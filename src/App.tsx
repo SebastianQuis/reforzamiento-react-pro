@@ -1,9 +1,13 @@
+import Counter from "./bases/Counter";
+import CounterBy from "./bases/Counter copy";
+import CounterEffect from "./bases/CounterEffect";
 
 function App() {
   return (
     <>
-      <h1>React</h1>
-      <hr />
+      {/* <Counter initialValue={1023}/>
+      <CounterBy /> */}
+      <CounterEffect/>
     </>
   );
 }
