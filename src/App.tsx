@@ -1,13 +1,20 @@
-import Counter from "./bases/Counter";
-import CounterBy from "./bases/Counter copy";
 import CounterEffect from "./bases/CounterEffect";
+import CounterHook from "./bases/CounterHook";
+import CounterReducerComponent from "./counter-reducer/CounterReducerComponent";
 
 function App() {
   return (
     <>
       {/* <Counter initialValue={1023}/>
       <CounterBy /> */}
-      <CounterEffect/>
+
+      {/* <CounterEffect /> */}
+      {/* <CounterEffect /> */}
+
+      {/* <CounterHook /> */}
+
+      <CounterReducerComponent/>
+
     </>
   );
 }

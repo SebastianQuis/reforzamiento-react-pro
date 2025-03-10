@@ -1,11 +1,13 @@
 import gsap from 'gsap';
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 const MAXIMUN_COUNT = 10;
 
 export default function CounterEffect() {
   
-    const [counter, setCounter] = useState(2)
+    const [counter, setCounter] = useState(2);
+    // manera ideal para hacer referencia y animaciones.
+    const counterElement = useRef<HTMLHeadingElement>(null);
   
     const handleCounter = () => {
         if (counter < 10) {
@@ -21,10 +23,11 @@ export default function CounterEffect() {
         };
 
         console.log('Se llegó al valor maximo');
-        // hacer referencia al ID, más no al elemento propio
-        gsap.to('h2', { y: -10, duration: 0.5, ease: 'ease.out' }).then(() => { 
-            gsap.to('h2', { y: 0, duration: 0.5, ease: 'bounce-out' });
-        });
+
+        // hacer referencia con useRef y animar con timeline, es la manera correccta
+        const tl = gsap.timeline();
+        tl.to(counterElement.current, { y: -10, duration: 0.5, ease: 'ease.out' })
+            .to(counterElement.current, { y: 0, duration: 0.5, ease: 'bounce-out' })
         
     }, [counter])
     
@@ -33,7 +36,7 @@ export default function CounterEffect() {
       <>
           <div className="flex flex-col ">
                 <h1>Counter effect</h1>
-                <h2>{ counter }</h2>
+                <h2 ref={counterElement} >{ counter }</h2>
                 <button onClick={handleCounter}>
                     +1
                 </button>
